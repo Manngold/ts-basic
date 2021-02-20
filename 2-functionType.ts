@@ -51,9 +51,17 @@
 
   //promise
 
-  const fetchData = (url: string, option: object): Promise<string> => {
+  const fetchData1 = (url: string, option: object): Promise<string> => {
     return new Promise((resolve, reject) => {
       resolve('Fetch Data!');
     });
+  };
+
+  //readOnly
+  //parameter 값을 변경 할 수 없게 묶어둘 수 있음 배열의 불변성 보장
+
+  const readData = (data: readonly string[]): string[] => {
+    data.map((a) => (a += '1'));
+    return data;
   };
 }
