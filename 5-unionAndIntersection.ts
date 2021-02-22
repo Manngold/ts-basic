@@ -18,9 +18,9 @@
     errorCode: number;
     errorMsg: string;
   };
-  type verifyResult = Success | Fail;
+  type VerifyResult = Success | Fail;
 
-  const verifyUser = (id: number): verifyResult => {
+  const verifyUser = (id: number): VerifyResult => {
     // ...verify logic
     //success
     if (isSuccess) {
@@ -34,4 +34,33 @@
       };
     }
   };
+
+  // intersection은 type alias를 통해 생성된 여러 타입을 하나로 합쳐서 사용 할 수 있다.
+  // musicPlayer와 phone이라는 type을 합쳐서 smartPhone을 만들 수 있다.
+
+  type MusicPlayer = {
+    playMusic: () => string;
+  };
+
+  type Phone = {
+    phoneNum: string;
+    call: () => string;
+    alarm: () => void;
+  };
+
+  type SmartPhone = MusicPlayer & Phone;
+
+  const myPhone: SmartPhone = {
+    phoneNum: '010-1234-5678',
+    playMusic: () => 'play music',
+    call: () => 'DDU RURU',
+    alarm: () => console.log('ring ring'),
+  };
+
+  const handleSmartPhone = (smartPhone: SmartPhone) => {
+    console.log(smartPhone.playMusic(), smartPhone.call(), smartPhone.phoneNum);
+    smartPhone.alarm();
+  };
+
+  handleSmartPhone(myPhone);
 }
